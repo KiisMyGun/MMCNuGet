@@ -3,9 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.32002.185
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MMC.Helper", "MMC.Helper\MMC.Helper.csproj", "{D2D1E260-B23C-40B3-BF2C-8CF5CC903F1C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MMC.Helper", "MMC.Helper\MMC.Helper.csproj", "{D2D1E260-B23C-40B3-BF2C-8CF5CC903F1C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MMC.Test", "MMC.Test\MMC.Test.csproj", "{88C2BEC3-07DC-4657-BED0-495A9825FEA9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MMC.Test", "MMC.Test\MMC.Test.csproj", "{88C2BEC3-07DC-4657-BED0-495A9825FEA9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MMC.StackExchange.Redis", "MMC.StackExchange.Redis\MMC.StackExchange.Redis.csproj", "{40ECB453-1234-49AC-B7A4-D6336012164F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{88C2BEC3-07DC-4657-BED0-495A9825FEA9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{88C2BEC3-07DC-4657-BED0-495A9825FEA9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{88C2BEC3-07DC-4657-BED0-495A9825FEA9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{40ECB453-1234-49AC-B7A4-D6336012164F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{40ECB453-1234-49AC-B7A4-D6336012164F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{40ECB453-1234-49AC-B7A4-D6336012164F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{40ECB453-1234-49AC-B7A4-D6336012164F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

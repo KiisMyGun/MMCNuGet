@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using System.Linq;
 
 using MMC.Helper;
 
@@ -13,19 +12,21 @@ namespace MMC.Test
 
         public static IEnumerable<object[]> TestMergeJsonData
         {
-             get
-             {
-                var driverData = new List<object[]>();
-                 driverData.Add(new object[] {
+            get
+            {
+                var driverData = new List<object[]>
+                {
+                    new object[] {
                     new string[] {
                         "{\"颜色\":\"淡黄色\",\"规格\":\"300ml\",\"口味\":\"蜂蜜\"}",
                         "{\"颜色\":\"透明\",\"规格\":\"350ml\",\"口味\":\"柠檬\"}",
                         "{\"颜色\":\"淡粉红\",\"规格\":\"400ml\",\"口味\":\"水蜜桃\"}"
                     }
-                 });
+                 }
+                };
                 return driverData;
-             }
-         }
+            }
+        }
 
         [Theory]
         [MemberData("TestMergeJsonData")]

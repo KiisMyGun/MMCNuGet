@@ -14,11 +14,19 @@ namespace MMC.Helper
     /// </summary>
     public class XmlComment
     {
-        private static Regex RefTagPattern = new Regex(@"<(see|paramref) (name|cref)=""([TPF]{1}:)?(?<display>.+?)"" ?/>");
-        private static Regex CodeTagPattern = new Regex(@"<c>(?<display>.+?)</c>");
-        private static Regex ParaTagPattern = new Regex(@"<para>(?<display>.+?)</para>", RegexOptions.Singleline);
+        private static readonly Regex RefTagPattern = new Regex(@"<(see|paramref) (name|cref)=""([TPF]{1}:)?(?<display>.+?)"" ?/>");
+        private static readonly Regex CodeTagPattern = new Regex(@"<c>(?<display>.+?)</c>");
+        private static readonly Regex ParaTagPattern = new Regex(@"<para>(?<display>.+?)</para>", RegexOptions.Singleline);
 
-        public static List<XPathNavigator> navigators = new List<XPathNavigator>();
+        /// <summary>
+        /// 导航
+        /// </summary>
+        private static List<XPathNavigator> navigators = new List<XPathNavigator>();
+
+        /// <summary>
+        /// 导航
+        /// </summary>
+        public static List<XPathNavigator> Navigators { get => navigators; set => navigators = value; }
 
         /// <summary>
         /// 从当前dll文件中加载所有的xml文件
@@ -38,7 +46,7 @@ namespace MMC.Helper
         /// 从xml中加载
         /// </summary>
         /// <param name="xmls"></param>
-        public void LoadXml(params string[] xmls)
+        public static void LoadXml(params string[] xmls)
         {
             foreach (var xml in xmls)
             {
@@ -61,7 +69,7 @@ namespace MMC.Helper
         /// 从流中加载
         /// </summary>
         /// <param name="streams"></param>
-        public void Load(params Stream[] streams)
+        public static void Load(params Stream[] streams)
         {
             foreach (var stream in streams)
             {
@@ -77,7 +85,7 @@ namespace MMC.Helper
         /// <param name="xPath">注释路径</param>
         /// <param name="humanize">可读性优化(比如：去掉xml标记)</param>
         /// <returns></returns>
-        public string GetTypeComment(Type type, string xPath = "summary", bool humanize = true)
+        public static string GetTypeComment(Type type, string xPath = "summary", bool humanize = true)
         {
             var typeMemberName = GetMemberNameForType(type);
             return GetComment(typeMemberName, xPath, humanize);
@@ -89,7 +97,7 @@ namespace MMC.Helper
         /// <param name="xPath">注释路径</param>
         /// <param name="humanize">可读性优化(比如：去掉xml标记)</param>
         /// <returns></returns>
-        public string GetFieldOrPropertyComment(MemberInfo fieldOrPropertyInfo, string xPath = "summary", bool humanize = true)
+        public static string GetFieldOrPropertyComment(MemberInfo fieldOrPropertyInfo, string xPath = "summary", bool humanize = true)
         {
             var fieldOrPropertyMemberName = GetMemberNameForFieldOrProperty(fieldOrPropertyInfo);
             return GetComment(fieldOrPropertyMemberName, xPath, humanize);
@@ -114,7 +122,7 @@ namespace MMC.Helper
         /// <param name="methodInfo">方法</param>
         /// <param name="humanize">可读性优化(比如：去掉xml标记)</param>
         /// <returns></returns>
-        public string GetMethodReturnComment(MethodInfo methodInfo, bool humanize = true)
+        public static string GetMethodReturnComment(MethodInfo methodInfo, bool humanize = true)
         {
             return GetMethodComment(methodInfo, "returns", humanize);
         }
@@ -124,7 +132,7 @@ namespace MMC.Helper
         /// <param name="parameterInfo">参数</param>
         /// <param name="humanize">可读性优化(比如：去掉xml标记)</param>
         /// <returns></returns>
-        public string GetParameterComment(ParameterInfo parameterInfo, bool humanize = true)
+        public static string GetParameterComment(ParameterInfo parameterInfo, bool humanize = true)
         {
             if (!(parameterInfo.Member is MethodInfo methodInfo)) return string.Empty;
 
@@ -137,7 +145,7 @@ namespace MMC.Helper
         /// <param name="methodInfo">方法</param>
         /// <param name="humanize">可读性优化(比如：去掉xml标记)</param>
         /// <returns></returns>
-        public Dictionary<string, string> GetParameterComments(MethodInfo methodInfo, bool humanize = true)
+        public static Dictionary<string, string> GetParameterComments(MethodInfo methodInfo, bool humanize = true)
         {
             var parameterInfos = methodInfo.GetParameters();
             Dictionary<string, string> dict = new Dictionary<string, string>();
@@ -174,7 +182,7 @@ namespace MMC.Helper
         /// <param name="name">节点名称</param>
         /// <param name="humanize">可读性优化(比如：去掉xml标记)</param>
         /// <returns></returns>
-        public string GetSummary(string name, bool humanize = true)
+        public static string GetSummary(string name, bool humanize = true)
         {
             return GetComment(name, "summary", humanize);
         }
@@ -184,7 +192,7 @@ namespace MMC.Helper
         /// <param name="name">节点名称</param>
         /// <param name="humanize">可读性优化(比如：去掉xml标记)</param>
         /// <returns></returns>
-        public string GetExample(string name, bool humanize = true)
+        public static string GetExample(string name, bool humanize = true)
         {
             return GetComment(name, "example", humanize);
         }
@@ -219,7 +227,7 @@ namespace MMC.Helper
         /// </summary>
         /// <param name="type"></param>
         /// <returns></returns>
-        public string GetMemberNameForType(Type type)
+        public static string GetMemberNameForType(Type type)
         {
             var builder = new StringBuilder("T:");
             builder.Append(QualifiedNameFor(type));
@@ -231,7 +239,7 @@ namespace MMC.Helper
         /// </summary>
         /// <param name="fieldOrPropertyInfo"></param>
         /// <returns></returns>
-        public string GetMemberNameForFieldOrProperty(MemberInfo fieldOrPropertyInfo)
+        public static string GetMemberNameForFieldOrProperty(MemberInfo fieldOrPropertyInfo)
         {
             var builder = new StringBuilder(((fieldOrPropertyInfo.MemberType & MemberTypes.Field) != 0) ? "F:" : "P:");
             builder.Append(QualifiedNameFor(fieldOrPropertyInfo.DeclaringType));
@@ -290,7 +298,7 @@ namespace MMC.Helper
         private static string Humanize(string text)
         {
             if (text == null)
-                throw new ArgumentNullException("text");
+                throw new ArgumentNullException(nameof(text));
 
             //Call DecodeXml at last to avoid entities like &lt and &gt to break valid xml       
             text = NormalizeIndentation(text);
@@ -325,7 +333,7 @@ namespace MMC.Helper
         private static string GetCommonLeadingWhitespace(string[] lines)
         {
             if (null == lines)
-                throw new ArgumentException("lines");
+                throw new ArgumentException(null, nameof(lines));
 
             if (lines.Length == 0)
                 return null;

@@ -6,7 +6,7 @@
     <Authors>SuperMMC</Authors>
     <Company>ZhongLI</Company>
     <Description>用于程序员快速开发中的各种帮助类</Description>
-    <Version>0.1.0</Version>
+    <Version>0.1.1</Version>
     <PackageIcon>ebb596d120b1215ce6c809e4b37f7f7.jpg</PackageIcon>
     <EnforceCodeStyleInBuild>True</EnforceCodeStyleInBuild>
     <EnableNETAnalyzers>True</EnableNETAnalyzers>
@@ -23,7 +23,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.DependencyValidation.Analyzers" Version="0.11.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Http.Features" Version="5.0.14" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
   </ItemGroup>
 

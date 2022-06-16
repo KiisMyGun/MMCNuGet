@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace MMC.Helper
 {
@@ -41,7 +39,7 @@ namespace MMC.Helper
                     age--;
                 }
 
-                return 18 <= age ;
+                return 18 <= age;
             }
             return false;
         }
