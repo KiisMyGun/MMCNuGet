@@ -3,7 +3,7 @@ using System.Linq;
 
 using Microsoft.AspNetCore.Http;
 
-namespace MMC.Helper
+namespace MMC.Web.Helper
 {
     /// <summary>
     /// 类型转换

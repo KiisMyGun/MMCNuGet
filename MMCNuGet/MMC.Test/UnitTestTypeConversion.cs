@@ -1,16 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-using Microsoft.AspNetCore.Http;
-
-using MMC.Helper;
-
-using Xunit;
-
-namespace MMC.Test
+﻿namespace MMC.Test
 {
     public class UnitTestTypeConversion
     {
